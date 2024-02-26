@@ -1,6 +1,6 @@
 import cv2
 
-camera_index = 0 
+camera_index = 10
 cap = cv2.VideoCapture(camera_index)
 
 # 카메라가 열렸는지 확인
