@@ -5,9 +5,9 @@ from time import sleep
 GPIO.setmode(GPIO.BCM)
 
 # 모터 제어 핀 설정
-in1 = 18
+in1 = 17
 in2 = 27
-en = 17
+en = 18
 GPIO.setup(in1, GPIO.OUT)
 GPIO.setup(in2, GPIO.OUT)
 GPIO.setup(en, GPIO.OUT)
@@ -15,7 +15,7 @@ GPIO.setup(en, GPIO.OUT)
 GPIO.output(in1, GPIO.LOW)
 GPIO.output(in2, GPIO.LOW)
 p=GPIO.PWM(en, 1000) # PWM 신호를 1000Hz로 설정
-p.start(25) # PWM 신호의 듀티 사이클을 25%로 시작 (속도 조절)
+p.start(75) # PWM 신호의 듀티 사이클을 25%로 시작 (속도 조절)
 
 # 모터 제어 함수
 def motor_forward():
