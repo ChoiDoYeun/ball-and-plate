@@ -15,7 +15,7 @@ GPIO.setup(en, GPIO.OUT)
 GPIO.output(in1, GPIO.LOW)
 GPIO.output(in2, GPIO.LOW)
 p=GPIO.PWM(en, 1000) # PWM 신호를 1000Hz로 설정
-p.start(75) # PWM 신호의 듀티 사이클을 25%로 시작 (속도 조절)
+p.start(100) # PWM 신호의 듀티 사이클을 25%로 시작 (속도 조절)
 
 # 모터 제어 함수
 def motor_forward():
