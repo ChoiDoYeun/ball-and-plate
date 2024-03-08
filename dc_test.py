@@ -61,7 +61,8 @@ def motor2_stop():
 try:
     motor1_forward()
     sleep(3)
-
+    motor2_forward()
+    sleep(3)
 
 finally:
     p1.stop()
