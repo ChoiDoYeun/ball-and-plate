@@ -48,16 +48,16 @@ def motor1_backward():
 
 try:
     motor1_forward()
-    motor2_forward()
+    #motor2_forward()
     time.sleep(5)  # 두 모터 모두 5초간 전진
     motor1_stop()
-    motor2_stop()
+    #motor2_stop()
     time.sleep(2)  # 두 모터 모두 2초간 정지
     motor1_backward()
-    motor2_backward()
+    #motor2_backward()
     time.sleep(5)  # 두 모터 모두 5초간 후진
     motor1_stop()
-    motor2_stop()
+    #motor2_stop()
 except KeyboardInterrupt:
     print("Program stopped")
 finally:
