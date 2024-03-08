@@ -7,21 +7,21 @@ GPIO.setmode(GPIO.BCM)
 # 모터1 제어 핀 설정
 in1 = 17
 in2 = 27
-en1 = 18
+en = 18
 GPIO.setup(in1, GPIO.OUT)
 GPIO.setup(in2, GPIO.OUT)
-GPIO.setup(en1, GPIO.OUT)
+GPIO.setup(en, GPIO.OUT)
 
 # 모터2 제어 핀 설정
-in3 = 22
-in4 = 23
-en2 = 24 
+in3 = 22  # 모터2 제어를 위한 추가 핀
+in4 = 23  # 모터2 제어를 위한 추가 핀
+en2 = 24  # 모터2 속도 제어를 위한 추가 핀
 GPIO.setup(in3, GPIO.OUT)
 GPIO.setup(in4, GPIO.OUT)
 GPIO.setup(en2, GPIO.OUT)
 
 # PWM 설정
-p1 = GPIO.PWM(en1, 1000)  # 모터1 PWM 신호를 1000Hz로 설정
+p1 = GPIO.PWM(en, 1000)  # 모터1 PWM 신호를 1000Hz로 설정
 p2 = GPIO.PWM(en2, 1000)  # 모터2 PWM 신호를 1000Hz로 설정
 p1.start(100)  # 모터1 PWM 신호의 듀티 사이클을 100%로 시작
 p2.start(100)  # 모터2 PWM 신호의 듀티 사이클을 100%로 시작
