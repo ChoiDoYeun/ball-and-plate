@@ -5,9 +5,9 @@ from time import sleep
 GPIO.setmode(GPIO.BCM)
 
 # 모터1 제어 핀 설정
-in1 = 22
-in2 = 23
-en = 24
+in1 = 17
+in2 = 18
+en = 27
 GPIO.setup(in1, GPIO.OUT)
 GPIO.setup(in2, GPIO.OUT)
 GPIO.setup(en, GPIO.OUT)
