@@ -1,13 +1,15 @@
 import RPi.GPIO as GPIO
 import time
 
+GPIO.cleanup()
+
 # GPIO 모드 설정
 GPIO.setmode(GPIO.BCM)
 
 # 모터 드라이버 핀 설정
-Motor1A = 17
-Motor1B = 18
-Motor1E = 27
+Motor1A = 10
+Motor1B = 9
+Motor1E = 22
 
 # 모터 핀 설정
 GPIO.setup(Motor1A, GPIO.OUT)
