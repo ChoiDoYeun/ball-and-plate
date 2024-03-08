@@ -4,43 +4,75 @@ import time
 # GPIO 모드 설정
 GPIO.setmode(GPIO.BCM)
 
-# 모터 드라이버 핀 설정
-Motor1A = 17
-Motor1B = 18
-Motor1E = 27
+# 첫 번째 모터 핀 설정
+Motor1A = 24
+Motor1B = 23
+Motor1E = 25
+
+# 두 번째 모터 핀 설정
+Motor2A = 17
+Motor2B = 18
+Motor2E = 27
 
 # 모터 핀 설정
 GPIO.setup(Motor1A, GPIO.OUT)
 GPIO.setup(Motor1B, GPIO.OUT)
 GPIO.setup(Motor1E, GPIO.OUT)
 
-# 모터 앞으로 회전
-def motor_forward():
+GPIO.setup(Motor2A, GPIO.OUT)
+GPIO.setup(Motor2B, GPIO.OUT)
+GPIO.setup(Motor2E, GPIO.OUT)
+
+# 첫 번째 모터 앞으로 회전
+def motor1_forward():
     GPIO.output(Motor1A, GPIO.HIGH)
     GPIO.output(Motor1B, GPIO.LOW)
     GPIO.output(Motor1E, GPIO.HIGH)
-    print("Motor Forward")
+    print("Motor 1 Forward")
 
-# 모터 정지
-def motor_stop():
+# 첫 번째 모터 정지
+def motor1_stop():
     GPIO.output(Motor1E, GPIO.LOW)
-    print("Motor Stop")
+    print("Motor 1 Stop")
 
-# 모터 뒤로 회전
-def motor_backward():
+# 첫 번째 모터 뒤로 회전
+def motor1_backward():
     GPIO.output(Motor1A, GPIO.LOW)
     GPIO.output(Motor1B, GPIO.HIGH)
     GPIO.output(Motor1E, GPIO.HIGH)
-    print("Motor Backward")
+    print("Motor 1 Backward")
+
+# 두 번째 모터 앞으로 회전
+def motor2_forward():
+    GPIO.output(Motor2A, GPIO.HIGH)
+    GPIO.output(Motor2B, GPIO.LOW)
+    GPIO.output(Motor2E, GPIO.HIGH)
+    print("Motor 2 Forward")
+
+# 두 번째 모터 정지
+def motor2_stop():
+    GPIO.output(Motor2E, GPIO.LOW)
+    print("Motor 2 Stop")
+
+# 두 번째 모터 뒤로 회전
+def motor2_backward():
+    GPIO.output(Motor2A, GPIO.LOW)
+    GPIO.output(Motor2B, GPIO.HIGH)
+    GPIO.output(Motor2E, GPIO.HIGH)
+    print("Motor 2 Backward")
 
 try:
-    motor_forward()
-    time.sleep(5)  # 5초간 전진
-    motor_stop()
-    time.sleep(2)  # 2초간 정지
-    motor_backward()
-    time.sleep(5)  # 5초간 후진
-    motor_stop()
+    motor1_forward()
+    motor2_forward()
+    time.sleep(5)  # 두 모터 모두 5초간 전진
+    motor1_stop()
+    motor2_stop()
+    time.sleep(2)  # 두 모터 모두 2초간 정지
+    motor1_backward()
+    motor2_backward()
+    time.sleep(5)  # 두 모터 모두 5초간 후진
+    motor1_stop()
+    motor2_stop()
 except KeyboardInterrupt:
     GPIO.cleanup()
 
