@@ -68,6 +68,15 @@ try:
         motor1_stop()
         sleep(2)  # 2초간 정지 상태 유지
 
+    # 모터2 테스트 코드 추가
+    for duty_cycle in [50, 75, 100]:  # 모터2에 대해서도 같은 테스트 진행
+        print(f"모터2 듀티 사이클 변경: {duty_cycle}%")
+        p2.ChangeDutyCycle(duty_cycle)
+        motor2_forward()
+        sleep(5)  # 5초간 모터2 전진
+        motor2_stop()
+        sleep(2)  # 2초간 정지 상태 유지
+
 finally:
     p1.stop()
     p2.stop()
