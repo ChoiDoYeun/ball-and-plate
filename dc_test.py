@@ -6,8 +6,8 @@ GPIO.setmode(GPIO.BCM)
 
 # 모터1 제어 핀 설정
 in1 = 17
-in2 = 18
-en1 = 27
+in2 = 27
+en1 = 18
 GPIO.setup(in1, GPIO.OUT)
 GPIO.setup(in2, GPIO.OUT)
 GPIO.setup(en1, GPIO.OUT)
