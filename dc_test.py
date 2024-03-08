@@ -15,7 +15,7 @@ GPIO.setup(en1, GPIO.OUT)
 # 모터2 제어 핀 설정
 in3 = 22
 in4 = 23
-en2 = 24
+en2 = 16
 GPIO.setup(in3, GPIO.OUT)
 GPIO.setup(in4, GPIO.OUT)
 GPIO.setup(en2, GPIO.OUT)
