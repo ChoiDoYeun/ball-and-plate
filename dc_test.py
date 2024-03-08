@@ -44,20 +44,37 @@ def motor1_backward():
     GPIO.output(Motor1E, GPIO.HIGH)
     print("Motor 1 Backward")
 
-# 두 번째 모터 제어 함수...
+# 두 번째 모터 앞으로 회전
+def motor2_forward():
+    GPIO.output(Motor2A, GPIO.HIGH)
+    GPIO.output(Motor2B, GPIO.LOW)
+    GPIO.output(Motor2E, GPIO.HIGH)
+    print("Motor 2 Forward")
+
+# 두 번째 모터 정지
+def motor2_stop():
+    GPIO.output(Motor2E, GPIO.LOW)
+    print("Motor 2 Stop")
+
+# 두 번째 모터 뒤로 회전
+def motor2_backward():
+    GPIO.output(Motor2A, GPIO.LOW)
+    GPIO.output(Motor2B, GPIO.HIGH)
+    GPIO.output(Motor2E, GPIO.HIGH)
+    print("Motor 2 Backward")
 
 try:
     motor1_forward()
-    #motor2_forward()
+    motor2_forward()
     time.sleep(5)  # 두 모터 모두 5초간 전진
     motor1_stop()
-    #motor2_stop()
+    motor2_stop()
     time.sleep(2)  # 두 모터 모두 2초간 정지
     motor1_backward()
-    #motor2_backward()
+    motor2_backward()
     time.sleep(5)  # 두 모터 모두 5초간 후진
     motor1_stop()
-    #motor2_stop()
+    motor2_stop()
 except KeyboardInterrupt:
     print("Program stopped")
 finally:
