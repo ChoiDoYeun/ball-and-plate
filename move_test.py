@@ -12,9 +12,6 @@ Motor2A, Motor2B, Motor2E = 22, 23, 24
 Motor3A, Motor3B, Motor3E = 10, 9, 25
 Motor4A, Motor4B, Motor4E = 8, 7, 11
 
-# 모터 속도 설정 (PWM)
-pwm_frequency = 1000
-
 # 모터 PWM 객체 초기화
 motor_pwm = {}
 
@@ -22,13 +19,14 @@ def setup_motor_pins():
     global motor_pwm
     motors = [Motor1A, Motor1B, Motor2A, Motor2B, Motor3A, Motor3B, Motor4A, Motor4B]
     enables = [Motor1E, Motor2E, Motor3E, Motor4E]
-    for pin in motors + enables:  # 모터 제어 핀과 PWM 활성화 핀 모두 설정
+    for pin in motors:
         GPIO.setup(pin, GPIO.OUT)
-    
+        GPIO.output(pin, GPIO.LOW)
     for en in enables:
-        GPIO.output(en, GPIO.LOW)  # PWM 활성화 핀 초기화
-        motor_pwm[en] = GPIO.PWM(en, pwm_frequency)  # PWM 인스턴스 생성 및 딕셔너리에 저장
-        motor_pwm[en].start(0)  # PWM 시작, 초기 듀티 사이클은 0%로 설정
+        GPIO.setup(en, GPIO.OUT)
+        pwm = GPIO.PWM(en, 1000)  # PWM 객체 생성
+        pwm.start(0)
+        motor_pwm[en] = pwm  # PWM 객체를 딕셔너리에 추가
 
 def motor_control(MotorA, MotorB, speed):
     if speed >= 0:
