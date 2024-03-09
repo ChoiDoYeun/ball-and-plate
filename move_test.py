@@ -22,13 +22,13 @@ def setup_motor_pins():
     global motor_pwm
     motors = [Motor1A, Motor1B, Motor2A, Motor2B, Motor3A, Motor3B, Motor4A, Motor4B]
     enables = [Motor1E, Motor2E, Motor3E, Motor4E]
-    for pin in motors:
+    for pin in motors + enables:  # 모터 제어 핀과 PWM 활성화 핀 모두 설정
         GPIO.setup(pin, GPIO.OUT)
-        GPIO.output(pin, GPIO.LOW)
+    
     for en in enables:
-        GPIO.setup(en, GPIO.OUT)
-        motor_pwm[en] = GPIO.PWM(en, pwm_frequency)
-        motor_pwm[en].start(0)
+        GPIO.output(en, GPIO.LOW)  # PWM 활성화 핀 초기화
+        motor_pwm[en] = GPIO.PWM(en, pwm_frequency)  # PWM 인스턴스 생성 및 딕셔너리에 저장
+        motor_pwm[en].start(0)  # PWM 시작, 초기 듀티 사이클은 0%로 설정
 
 def motor_control(MotorA, MotorB, speed):
     if speed >= 0:
@@ -90,8 +90,13 @@ try:
         move_direction(direction)
         time.sleep(2)  # 각 방향으로 2초간 이동
 
+except KeyError as e:
+    print(f"KeyError encountered: {e}")
+    # 모터 PWM 인스턴스가 정의되지 않았을 경우의 처리
 finally:
     # 모터 정지 및 GPIO 설정 정리
-    for en in [Motor1E, Motor2E, Motor3E, Motor4E]:
-        motor_pwm[en].ChangeDutyCycle(0)
+    for en in [Motor1E, Motor2E, Motor3E, Motor44E]:
+        if en in motor_pwm:  # motor_pwm 딕셔너리에 핀이 존재하는지 확인
+            motor_pwm[en].ChangeDutyCycle(0)
+            motor_pwm[en].stop()  # PWM 정지
     GPIO.cleanup()
