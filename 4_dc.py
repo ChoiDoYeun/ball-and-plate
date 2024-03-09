@@ -10,7 +10,7 @@ GPIO.setmode(GPIO.BCM)
 Motor1A, Motor1B, Motor1E = 17, 18, 27
 Motor2A, Motor2B, Motor2E = 22, 23, 24
 Motor3A, Motor3B, Motor3E = 10, 9, 25
-Motor4A, Motor4B, Motor4E = 8, 7, 11
+Motor4A, Motor4B, Motor4E = 20, 21, 26
 
 # 모든 모터 핀 설정
 motors = [Motor1A, Motor1B, Motor1E, Motor2A, Motor2B, Motor2E, Motor3A, Motor3B, Motor3E, Motor4A, Motor4B, Motor4E]
