@@ -7,7 +7,7 @@ GPIO.cleanup()  # 이전 실행의 설정을 정리
 GPIO.setmode(GPIO.BCM)  # GPIO 모드를 BCM으로 설정
 
 # 모터 핀 설정
-Motor1A, Motor1B, Motor1E = 24, 23, 25
+Motor1A, Motor1B, Motor1E = 22, 23, 24
 Motor2A, Motor2B, Motor2E = 17, 18, 27
 Motor3A, Motor3B, Motor3E = 10, 9, 25
 Motor4A, Motor4B, Motor4E = 8, 7, 11
