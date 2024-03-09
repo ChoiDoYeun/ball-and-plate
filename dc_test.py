@@ -6,56 +6,79 @@ GPIO.setwarnings(False)
 GPIO.cleanup()  # 이전 실행의 설정을 정리
 GPIO.setmode(GPIO.BCM)  # GPIO 모드를 BCM으로 설정
 
+# 첫 번째 모터 핀 설정
+Motor1A = 10
+Motor1B = 9
+Motor1E = 25
+
+# 두 번째 모터 핀 설정
+Motor2A = 8
+Motor2B = 7
+Motor2E = 11
+
 # 모터 핀 설정
-Motor1A, Motor1B, Motor1E = 22, 23, 24
-Motor2A, Motor2B, Motor2E = 17, 18, 27
-Motor3A, Motor3B, Motor3E = 10, 9, 25
-Motor4A, Motor4B, Motor4E = 8, 7, 11
+GPIO.setup(Motor1A, GPIO.OUT)
+GPIO.setup(Motor1B, GPIO.OUT)
+GPIO.setup(Motor1E, GPIO.OUT)
 
-# 모든 모터 핀 설정
-motors = [Motor1A, Motor1B, Motor1E, Motor2A, Motor2B, Motor2E, Motor3A, Motor3B, Motor3E, Motor4A, Motor4B, Motor4E]
-for pin in motors:
-    GPIO.setup(pin, GPIO.OUT)
+GPIO.setup(Motor2A, GPIO.OUT)
+GPIO.setup(Motor2B, GPIO.OUT)
+GPIO.setup(Motor2E, GPIO.OUT)
 
-# 모터 제어 함수 정의 (앞으로, 정지, 뒤로 각각 모터별로 정의)
-def motor_forward(MotorA, MotorB, MotorE):
-    GPIO.output(MotorA, GPIO.HIGH)
-    GPIO.output(MotorB, GPIO.LOW)
-    GPIO.output(MotorE, GPIO.HIGH)
+# 첫 번째 모터 앞으로 회전
+def motor1_forward():
+    GPIO.output(Motor1A, GPIO.HIGH)
+    GPIO.output(Motor1B, GPIO.LOW)
+    GPIO.output(Motor1E, GPIO.HIGH)
+    print("Motor 1 Forward")
 
-def motor_stop(MotorE):
-    GPIO.output(MotorE, GPIO.LOW)
+# 첫 번째 모터 정지
+def motor1_stop():
+    GPIO.output(Motor1E, GPIO.LOW)
+    print("Motor 1 Stop")
 
-def motor_backward(MotorA, MotorB, MotorE):
-    GPIO.output(MotorA, GPIO.LOW)
-    GPIO.output(MotorB, GPIO.HIGH)
-    GPIO.output(MotorE, GPIO.HIGH)
+# 첫 번째 모터 뒤로 회전
+def motor1_backward():
+    GPIO.output(Motor1A, GPIO.LOW)
+    GPIO.output(Motor1B, GPIO.HIGH)
+    GPIO.output(Motor1E, GPIO.HIGH)
+    print("Motor 1 Backward")
+
+# 두 번째 모터 앞으로 회전
+def motor2_forward():
+    GPIO.output(Motor2A, GPIO.HIGH)
+    GPIO.output(Motor2B, GPIO.LOW)
+    GPIO.output(Motor2E, GPIO.HIGH)
+    print("Motor 2 Forward")
+
+# 두 번째 모터 정지
+def motor2_stop():
+    GPIO.output(Motor2E, GPIO.LOW)
+    print("Motor 2 Stop")
+
+# 두 번째 모터 뒤로 회전
+def motor2_backward():
+    GPIO.output(Motor2A, GPIO.LOW)
+    GPIO.output(Motor2B, GPIO.HIGH)
+    GPIO.output(Motor2E, GPIO.HIGH)
+    print("Motor 2 Backward")
 
 try:
-    # 모터 순차적으로 제어
     print("Starting motor sequence...")
-    motor_forward(Motor1A, Motor1B, Motor1E)
-    motor_forward(Motor2A, Motor2B, Motor2E)
-    motor_forward(Motor3A, Motor3B, Motor3E)
-    motor_forward(Motor4A, Motor4B, Motor4E)
-    time.sleep(5)  # 모든 모터 5초간 전진
+    motor1_forward()
+    motor2_forward()
+    time.sleep(5)  # 두 모터 모두 5초간 전진
     
-    motor_stop(Motor1E)
-    motor_stop(Motor2E)
-    motor_stop(Motor3E)
-    motor_stop(Motor4E)
-    time.sleep(2)  # 모든 모터 2초간 정지
+    motor1_stop()
+    motor2_stop()
+    time.sleep(2)  # 두 모터 모두 2초간 정지
     
-    motor_backward(Motor1A, Motor1B, Motor1E)
-    motor_backward(Motor2A, Motor2B, Motor2E)
-    motor_backward(Motor3A, Motor3B, Motor3E)
-    motor_backward(Motor4A, Motor4B, Motor4E)
-    time.sleep(5)  # 모든 모터 5초간 후진
+    motor1_backward()
+    motor2_backward()
+    time.sleep(5)  # 두 모터 모두 5초간 후진
     
-    motor_stop(Motor1E)
-    motor_stop(Motor2E)
-    motor_stop(Motor3E)
-    motor_stop(Motor4E)
+    motor1_stop()
+    motor2_stop()
     print("Motor sequence completed.")
     
 except KeyboardInterrupt:
