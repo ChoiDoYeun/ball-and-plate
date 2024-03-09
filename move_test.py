@@ -95,7 +95,7 @@ except KeyError as e:
     # 모터 PWM 인스턴스가 정의되지 않았을 경우의 처리
 finally:
     # 모터 정지 및 GPIO 설정 정리
-    for en in [Motor1E, Motor2E, Motor3E, Motor44E]:
+    for en in [Motor1E, Motor2E, Motor3E, Motor4E]:
         if en in motor_pwm:  # motor_pwm 딕셔너리에 핀이 존재하는지 확인
             motor_pwm[en].ChangeDutyCycle(0)
             motor_pwm[en].stop()  # PWM 정지
