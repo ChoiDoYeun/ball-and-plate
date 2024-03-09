@@ -5,9 +5,9 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 # 모터 드라이버 핀 설정
-Motor1A = 24
-Motor1B = 23
-Motor1E = 25
+Motor1A = 17
+Motor1B = 18
+Motor1E = 27
 
 # 모터 핀 설정
 GPIO.setup(Motor1A, GPIO.OUT)
