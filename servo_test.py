@@ -4,6 +4,10 @@ import time
 # PCA9685 모듈 설정 (16채널 PWM 드라이버)
 kit = ServoKit(channels=16)
 
+# 각 서보 모터의 최소 및 최대 펄스 길이를 설정합니다 (서보 모터에 따라 조정할 수 있음)
+min_pulse = 500
+max_pulse = 2500
+
 # 서보 모터를 점진적으로 움직이는 함수
 def move_servo_smoothly(motor_number, target_angle, step=1, delay=0.05):
     kit.servo[motor_number].set_pulse_width_range(min_pulse, max_pulse)
