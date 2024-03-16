@@ -7,6 +7,14 @@ NUM_SERVOS = 6
 # 서보 모터 키트 초기화 (PCA9685 모듈 사용 시)
 kit = ServoKit(channels=16)
 
+# 모든 서보 모터를 0도로 초기화하는 함수
+def initialize_servos():
+    global min_pulse, max_pulse  # 전역 변수 사용 선언
+    for i in range(16):
+        kit.servo[i].set_pulse_width_range(min_pulse, max_pulse)
+        kit.servo[i].angle = 0
+        time.sleep(0.05)
+
 def calculate_duration(angle):
     """
     주어진 각도에 대해 서보 모터가 회전하는 데 필요한 시간을 계산합니다.
@@ -47,6 +55,7 @@ def get_user_input(prompt, input_type):
             print(f"잘못된 입력입니다. {input_type.__name__} 타입의 숫자를 입력해야 합니다.")
 
 def main():
+    initialize_servos()
     servo_number = get_user_input("서보 모터 번호를 입력하세요 (0-5): ", int)
     direction = get_user_input("회전 방향을 입력하세요 (+1: 시계 방향, -1: 반시계 방향): ", int)
     angle = get_user_input("회전할 각도를 입력하세요: ", float)
