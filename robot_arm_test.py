@@ -10,7 +10,6 @@ kit = ServoKit(channels=16)
 # 모든 서보 모터를 0도로 초기화하는 함수
 def initialize_servos():
     for i in range(16):
-        kit.servo[i].set_pulse_width_range(min_pulse, max_pulse)
         kit.servo[i].angle = 0
         time.sleep(0.05)
 
