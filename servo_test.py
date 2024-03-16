@@ -9,7 +9,7 @@ min_pulse = 500
 max_pulse = 2500
 
 # 서보 모터를 점진적으로 움직이는 함수
-def move_servo_smoothly(motor_number, target_angle, step=1, delay=0.05):
+def move_servo_smoothly(motor_number, target_angle, step=1, delay=0.01):
     global min_pulse, max_pulse  # 전역 변수 사용 선언
     kit.servo[motor_number].set_pulse_width_range(min_pulse, max_pulse)
     
