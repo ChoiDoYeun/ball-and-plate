@@ -67,10 +67,6 @@ def main():
             return
         
         rotate_servo(servo_number, direction, angle)
-    except ValueError:
-        print("잘못된 입력입니다. 숫자를 입력해야 합니다.")
-    except KeyboardInterrupt:
-        print("\n프로그램을 종료합니다.")
 
 if __name__ == "__main__":
     main()
