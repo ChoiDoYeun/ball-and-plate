@@ -8,16 +8,36 @@ kit = ServoKit(channels=16)
 min_pulse = 500
 max_pulse = 2500
 
-# 서보 모터를 순차적으로 움직이는 함수
-def move_servos_sequentially():
-    for i in range(6):  # 4개의 서보 모터 제어
-        kit.servo[i].set_pulse_width_range(min_pulse, max_pulse)
-        kit.servo[i].angle = 0  # 0도로 서보 모터 회전
-        time.sleep(1)
-        kit.servo[i].angle = 20  # 180도로 서보 모터 회전
-        time.sleep(1)
-        kit.servo[i].angle = 10  # 다시 90도로 서보 모터 회전 (중간 위치)
-        time.sleep(1)
+# 서보 모터를 점진적으로 움직이는 함수
+def move_servo_smoothly(motor_number, target_angle, step=1, delay=0.05):
+    kit.servo[motor_number].set_pulse_width_range(min_pulse, max_pulse)
+    
+    current_angle = kit.servo[motor_number].angle if kit.servo[motor_number].angle is not None else 0
+    
+    if current_angle < target_angle:
+        for angle in range(int(current_angle), int(target_angle)+1, step):
+            kit.servo[motor_number].angle = angle
+            time.sleep(delay)
+    else:
+        for angle in range(int(current_angle), int(target_angle)-1, -step):
+            kit.servo[motor_number].angle = angle
+            time.sleep(delay)
 
 if __name__ == '__main__':
-    move_servos_sequentially()
+    while True:
+        # 사용자 입력 받기
+        motor_number = int(input("제어할 서보 모터 번호를 입력하세요 (0-15): "))
+        target_angle = int(input("목표 각도를 입력하세요 (0-180): "))
+        
+        # 입력 검증
+        if motor_number < 0 or motor_number > 15 or target_angle < 0 or target_angle > 180:
+            print("잘못된 입력입니다. 서보 모터 번호는 0-15, 각도는 0-180 사이여야 합니다.")
+        else:
+            # 서보 모터 움직이기
+            move_servo_smoothly(motor_number, target_angle, step=1, delay=0.05)
+            print(f"{motor_number}번 서보 모터를 {target_angle}도로 이동했습니다.")
+
+        # 반복 제어
+        continue_prompt = input("다른 서보 모터를 제어하시겠습니까? (y/n): ")
+        if continue_prompt.lower() != 'y':
+            break
