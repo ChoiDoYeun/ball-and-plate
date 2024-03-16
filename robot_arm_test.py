@@ -7,6 +7,10 @@ NUM_SERVOS = 6
 # 서보 모터 키트 초기화 (PCA9685 모듈 사용 시)
 kit = ServoKit(channels=16)
 
+# 각 서보 모터의 최소 및 최대 펄스 길이를 전역 변수로 설정
+min_pulse = 500
+max_pulse = 2500
+
 # 모든 서보 모터를 0도로 초기화하는 함수
 def initialize_servos():
     global min_pulse, max_pulse  # 전역 변수 사용 선언
