@@ -40,7 +40,7 @@ if __name__ == '__main__':
         target_angle = int(input("목표 각도를 입력하세요 (0-180): "))
         
         # 입력 검증
-        if motor_number < 0 or motor_number > 15 or target_angle < 0 or target_angle > 180:
+        if motor_number < 0 or motor_number > 15 or target_angle < 0 or target_angle > 360 :
             print("잘못된 입력입니다. 서보 모터 번호는 0-15, 각도는 0-180 사이여야 합니다.")
         else:
             # 서보 모터 움직이기
