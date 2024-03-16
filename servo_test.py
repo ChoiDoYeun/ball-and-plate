@@ -23,7 +23,17 @@ def move_servo_smoothly(motor_number, target_angle, step=1, delay=0.05):
             kit.servo[motor_number].angle = angle
             time.sleep(delay)
 
+# 모든 서보 모터를 0도로 초기화하는 함수
+def initialize_servos():
+    for i in range(16):  # 16채널 모든 서보 모터 초기화
+        kit.servo[i].set_pulse_width_range(min_pulse, max_pulse)
+        kit.servo[i].angle = 0
+        time.sleep(0.05)  # 초기화 간에 약간의 지연을 줍니다.
+
 if __name__ == '__main__':
+    initialize_servos()  # 프로그램 시작 시 모든 서보 모터를 0도로 초기화합니다.
+    print("모든 서보 모터가 0도로 초기화되었습니다.")
+
     while True:
         # 사용자 입력 받기
         motor_number = int(input("제어할 서보 모터 번호를 입력하세요 (0-15): "))
