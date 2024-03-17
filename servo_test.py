@@ -28,9 +28,11 @@ def move_servo_smoothly(motor_number, target_angle, step=1, delay=0.01):
 # 모든 서보 모터를 0도로 초기화하는 함수
 def initialize_servos():
     global min_pulse, max_pulse  # 전역 변수 사용 선언
-    for i in range(16):
+    # 초기 설정 값 지정
+    initial_positions = [0, 60, 60, 150, 0, 0]  # 0~3번 서보 모터 각도 설정, 4, 5번 서보 모터는 0도
+    for i in range(len(initial_positions)):
         kit.servo[i].set_pulse_width_range(min_pulse, max_pulse)
-        kit.servo[i].angle = 0
+        kit.servo[i].angle = initial_positions[i]
         time.sleep(0.05)
 
 if __name__ == '__main__':
@@ -47,7 +49,7 @@ if __name__ == '__main__':
         elif target_angle < 0 or target_angle > 180:
             print("잘못된 각도입니다. 각도는 0-180 사이여야 합니다.")
         else:
-            move_servo_smoothly(motor_number, target_angle, step=1, delay=0.05)
+            move_servo_smoothly(motor_number, target_angle, step=1, delay=0.01)
             print(f"{motor_number}번 서보 모터를 {target_angle}도로 이동했습니다.")
 
         continue_prompt = input("다른 서보 모터를 제어하시겠습니까? (y/n): ")
