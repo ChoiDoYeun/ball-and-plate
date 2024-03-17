@@ -79,6 +79,8 @@ if __name__ == '__main__':
     final_y = home_y + delta_y
     final_z = home_z + delta_z
     angles = calculate_and_adjust_angles_complete(final_x, final_y, final_z)
+    print("최종 좌표: ({}, {}, {})".format(final_x, final_y, final_z))
+    print("기반 각도: {:.2f}, 어깨 각도: {:.2f}, 팔꿈치 각도: {:.2f}, 손목 각도: {:.2f}".format(*angles))
 
     # 계산된 각도로 서보 모터 조정
     for i, angle in enumerate(angles):
