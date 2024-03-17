@@ -56,9 +56,13 @@ while True:
         M = cv2.moments(largest_contour)
         if M["m00"] != 0:
             cx = int(M["m10"] / M["m00"])
+            cy = int(M["m01"] / M["m00"])
 
             # 화면 중앙에 대한 선의 위치 찾기
             height, width = frame.shape[:2]
+            cv2.line(frame, (width // 2, 0), (width // 2, height), (255, 0, 0), 2)  # 화면 중앙 세로선
+            cv2.circle(frame, (cx, cy), 5, (0, 255, 0), -1)  # 선의 중앙 위치
+            
             pwm_left, pwm_right = calculate_pwm_values(cx, width)
 
             # 모터 속도 조절
