@@ -67,7 +67,7 @@ if __name__ == '__main__':
     home_x, home_y, home_z = 8.75, 0.0, 33.66
 
     # 홈포지션을 다시 (0,0,0)으로 설정했을때 이미지를 통해 얻은 x,y,z좌표값 (example)
-    x, y, z = 15, 10, 20
+    delta_x, delta_y, delta_z = 15, 10, 20
 
     # 최종 좌표
     final_x = home_x + delta_x
