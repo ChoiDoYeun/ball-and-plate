@@ -63,8 +63,17 @@ if __name__ == '__main__':
     print("서보 모터 초기화 완료")
 
     # 좌표 입력
-    x, y, z = 15, 10, 20  # 예시 좌표
-    angles = calculate_and_adjust_angles_complete(x, y, z)
+    # 홈포지션
+    home_x, home_y, home_z = 8.75, 0.0, 33.66
+
+    # 홈포지션을 다시 (0,0,0)으로 설정했을때 이미지를 통해 얻은 x,y,z좌표값 (example)
+    x, y, z = 15, 10, 20
+
+    # 최종 좌표
+    final_x = home_x + delta_x
+    final_y = home_y + delta_y
+    final_z = home_z + delta_z
+    angles = calculate_and_adjust_angles_complete(final_x, final_y, final_z)
 
     # 계산된 각도로 서보 모터 조정
     for i, angle in enumerate(angles):
