@@ -24,7 +24,7 @@ Motor2PWM.start(0)
 
 def calculate_pwm_values(center_position, width):
     deviation = center_position - (width / 2)
-    base_pwm = 50  # 기본 PWM 값
+    base_pwm = 10  # 기본 PWM 값
     adjustment = int(deviation / width * 100)  # 조정량 계산
     pwm_left = base_pwm + adjustment
     pwm_right = base_pwm - adjustment
