@@ -37,6 +37,8 @@ def calculate_and_adjust_angles_complete(x, y, z, a1=13, a2=17.5, a3=5.5):
         theta2 = math.atan2(-math.sqrt(1 - cos_theta2**2), cos_theta2)
         angle_d = math.atan2(z_eff, r)
         cos_alpha = (a2**2 + d**2 - a3**2) / (2 * a2 * d)
+        cos_alpha = max(min(cos_alpha, 1), -1)  # cos_alpha 값을 [-1, 1] 범위 내로 제한
+        
         alpha = math.atan2(math.sqrt(1 - cos_alpha**2), cos_alpha)
         theta1 = angle_d + alpha
         return math.degrees(theta_base), math.degrees(theta1), math.degrees(theta2), 180 - (math.degrees(theta1) + math.degrees(theta2))
