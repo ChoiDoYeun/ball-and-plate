@@ -2,6 +2,12 @@ import RPi.GPIO as GPIO
 import cv2
 import numpy as np
 
+# 서보모터 초기화 함수 추가해야함
+# 서보모터 초기화 함수 수정 사항
+    # 주행모드
+        #2번 0도
+        #3도 180도
+
 # GPIO 설정 초기화
 GPIO.setwarnings(False)
 GPIO.cleanup()
