@@ -49,7 +49,7 @@ if __name__ == '__main__':
         elif target_angle < 0 or target_angle > 180:
             print("잘못된 각도입니다. 각도는 0-180 사이여야 합니다.")
         else:
-            move_servo_smoothly(motor_number, target_angle, step=1, delay=0.01)
+            move_servo_smoothly(motor_number, target_angle, step=1, delay=0.03)
             print(f"{motor_number}번 서보 모터를 {target_angle}도로 이동했습니다.")
 
         continue_prompt = input("다른 서보 모터를 제어하시겠습니까? (y/n): ")
