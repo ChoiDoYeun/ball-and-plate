@@ -69,7 +69,7 @@ while True:
             set_motor_pwm((Motor1A, Motor1B, Motor1PWM), True, pwm_left)
             set_motor_pwm((Motor2A, Motor2B, Motor2PWM), True, pwm_right)
 
-    cv2.imshow('Frame', frame)
+    #cv2.imshow('Frame', frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
