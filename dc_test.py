@@ -5,8 +5,8 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 # 모터 핀 설정
-Motor3A, Motor3B, Motor3E = 20, 21, 26
-Motor4A, Motor4B, Motor4E = 8, 7, 11
+Motor3A, Motor3B, Motor3E = 20, 21, 26 # 진행방향 (로봇팔쪽) 왼쪽
+Motor4A, Motor4B, Motor4E = 8, 7, 11 # 진행방향 (로봇팔쪽) 오른쪽
 
 # 모터 핀 출력 설정
 GPIO.setup(Motor3A, GPIO.OUT)
